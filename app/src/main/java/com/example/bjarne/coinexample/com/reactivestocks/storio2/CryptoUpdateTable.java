@@ -7,7 +7,7 @@ import java.math.BigDecimal;
  */
 
 public class CryptoUpdateTable {
-    static final String TABLE = "crypto_updates";
+    public static final String TABLE = "crypto_updates";
 
     static class Columns {
         static final String ID = "_id";
@@ -23,7 +23,7 @@ public class CryptoUpdateTable {
     static String createTableQuery() {
         return "CREATE TABLE " + TABLE + " ("
                 + Columns.ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
-                + Columns.CRYTPO_SYMBOL + " LONG NOT NULL, "
+                + Columns.CRYTPO_SYMBOL + " TEXT NOT NULL, "
                 + Columns.DATE + " LONG NOT NULL, "
                 + Columns.PRICE + " LONG NOT NULL"
                 + ");";

@@ -1,6 +1,7 @@
 package com.example.bjarne.coinexample;
 
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -37,13 +38,21 @@ public class CryptoDataAdapter extends RecyclerView.Adapter<CryptoUpdateViewHold
     }
 
     public void add(CryptoUpdate newCryptoUpdate) {
-        for (CryptoUpdate cryptoUpdate : data) {
+        for (int i = 0; i < data.size(); i++) {
+            CryptoUpdate cryptoUpdate = data.get(i);
             if (cryptoUpdate.getSymbol().equals(newCryptoUpdate.getSymbol())) {
+                Log.d("TAG", "Found match");
                 if (cryptoUpdate.getPriceUsd().equals(newCryptoUpdate.getPriceUsd())) {
+                    Log.d("TAG", "Price Same");
+                    return;
+                } else {
+                    Log.d("TAG", "Price Changed");
+                    this.data.set(i, newCryptoUpdate);
+                    notifyItemChanged(i);
                     return;
                 }
-                break;
             }
+            Log.d("TAG", "No match");
         }
 
         this.data.add(0, newCryptoUpdate);

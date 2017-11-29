@@ -31,8 +31,8 @@ public class StorIOFactory {
                 .sqliteOpenHelper(new StorIODbHelper(context))
                 .addTypeMapping(CryptoUpdate.class, SQLiteTypeMapping.<CryptoUpdate>builder()
                         .putResolver(new CrytpoUpdatePutResolver())
-                        .getResolver(createGetResolver())
-                        .deleteResolver(createDeleteResolver())
+                        .getResolver(new CryptoUpdateGetResolver())
+                        .deleteResolver(new CryptoUpdateDeleteResolver())
                         .build())
                 .build();
 
